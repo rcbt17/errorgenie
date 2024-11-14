@@ -1,8 +1,15 @@
-# frozen_string_literal: true
+require "errorgenie/version"
+require "errorgenie/railtie"  # Ensure the Railtie is loaded
+require "errorgenie/middleware/error_renderer"  # Explicitly require the middleware file
 
-require_relative "errorgenie/version"
+module ErrorGenie
+  def self.handle_error(error)
+    # General error message
+    "An error occurred: #{error.class.name} - #{error.message}"
+  end
 
-module Errorgenie
-  class Error < StandardError; end
-  # Your code goes here...
+  # General AI advice message for all errors
+  def self.ai_help(error)
+    "AI Suggestion: Try checking the error details above and ensure your code aligns with Rails conventions. For more help, consult Rails documentation or debugging tools."
+  end
 end

@@ -1,0 +1,29 @@
+<div id="errorgenie-container" style="border: 1px solid #ccc; padding: 10px; margin-bottom: 20px;">
+  <div class="tab-buttons" style="display: flex; gap: 10px; margin-bottom: 10px;">
+    <button id="rails-error-tab" onclick="showTab('rails-error')" style="padding: 5px 10px; cursor: pointer;">Rails Error</button>
+    <button id="ai-help-tab" onclick="showTab('ai-help')" style="padding: 5px 10px; cursor: pointer;">AI Help</button>
+  </div>
+
+  <div id="rails-error" class="tab-content active" style="display: block; margin-top: 10px;">
+    <!-- Original Rails error content remains here -->
+  </div>
+
+  <div id="ai-help" class="tab-content" style="display: none; margin-top: 10px;">
+    <h2>AI Help</h2>
+    <p><%= ai_response %></p>
+  </div>
+
+  <style>
+    .tab-buttons button.active { background-color: #f0f0f0; border-bottom: 2px solid #000; }
+  </style>
+
+  <script>
+    function showTab(tabId) {
+      document.querySelectorAll('.tab-content').forEach(tab => tab.style.display = 'none');
+      document.querySelectorAll('.tab-buttons button').forEach(button => button.classList.remove('active'));
+      document.getElementById(tabId).style.display = 'block';
+      document.getElementById(tabId + '-tab').classList.add('active');
+    }
+    document.getElementById('rails-error-tab').classList.add('active');
+  </script>
+</div>
