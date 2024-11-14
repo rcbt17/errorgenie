@@ -1,7 +1,9 @@
 module ErrorGenie
   class Railtie < ::Rails::Railtie
-    initializer "errorgenie.configure_middleware" do |app|
-      app.middleware.insert_after ActionDispatch::DebugExceptions, ErrorGenie::ErrorRenderer
+    initializer "errorgenie.add_error_renderer_middleware" do |app|
+      if Rails.env.development?
+        app.middleware.insert_after ActionDispatch::ShowExceptions, ErrorGenie::ErrorRenderer
+      end
     end
   end
 end
